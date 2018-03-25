@@ -58,8 +58,9 @@ class LinkedList(object):
         Insert node at the end of list
         """
         node = ListNode(x)
-        if self._tail is None:
-            self._tail = node
+        if self._head is None:
+            self._head = node
+            self._tail = self._head
         else:
             self._tail.next = node
             self._tail = node
