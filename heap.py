@@ -68,6 +68,14 @@ class MaxHeap(Heap):
             self.max_heapify(i)
         return True
 
+    def sort(self):
+        self.build_max_heap()
+        for i in xrange(self.length-1, 0, -1):
+            self.A[0], self.A[i] = self.A[i], self.A[0]
+            self.max_index -= 1
+            self.max_heapify(0)
+        return True
+
 
 class MinHeap(Heap):
     def is_min_heap(self, i):
@@ -75,3 +83,10 @@ class MinHeap(Heap):
         Value of a node is at least the value of its parent
         """
         return self.A[self.parent(i)] <= self.A[i]
+
+def heap_sort(arr):
+    if len(arr) in (0, 1):
+        return arr
+    m = MaxHeap(arr)
+    m.sort()
+    return m.A
